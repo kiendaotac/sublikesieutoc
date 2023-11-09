@@ -46,7 +46,6 @@ class ServiceResource extends Resource
 
                 Forms\Components\Textarea::make('icon')->rows(10)->required(),
                 Forms\Components\RichEditor::make('description'),
-//                CodeEditor::make('icon')->required(),
                 Forms\Components\TextInput::make('price')
                     ->numeric()->required()->default(0)->suffix('VNĐ'),
                 Forms\Components\Select::make('status')->options([
