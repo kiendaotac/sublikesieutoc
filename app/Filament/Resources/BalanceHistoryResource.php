@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BalanceHistoryResource extends Resource
@@ -18,6 +19,21 @@ class BalanceHistoryResource extends Resource
     protected static ?string $model = BalanceHistory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
@@ -42,14 +58,15 @@ class BalanceHistoryResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+//                Tables\Actions\ViewAction::make(),
+//                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+//                Tables\Actions\BulkActionGroup::make([
+//                    Tables\Actions\DeleteBulkAction::make(),
+//                ]),
+            ])
+            ->defaultSort('created_at', 'DESC');
     }
     
     public static function getRelations(): array
@@ -63,9 +80,9 @@ class BalanceHistoryResource extends Resource
     {
         return [
             'index' => Pages\ListBalanceHistories::route('/'),
-            'create' => Pages\CreateBalanceHistory::route('/create'),
-            'view' => Pages\ViewBalanceHistory::route('/{record}'),
-            'edit' => Pages\EditBalanceHistory::route('/{record}/edit'),
+//            'create' => Pages\CreateBalanceHistory::route('/create'),
+//            'view' => Pages\ViewBalanceHistory::route('/{record}'),
+//            'edit' => Pages\EditBalanceHistory::route('/{record}/edit'),
         ];
     }    
 }

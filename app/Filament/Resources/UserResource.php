@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Services\BalanceService;
 use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
@@ -59,10 +60,20 @@ class UserResource extends Resource
             TextInput::make('name')
                 ->required()
                 ->label(trans('filament-user::user.resource.name')),
+            TextInput::make('username')
+                ->disabled(function () use($form) {
+                    return $form->getOperation() == 'edit';
+                })
+                ->required()
+                ->unique('users', 'username')
+                ->label('Username'),
             TextInput::make('email')
                 ->email()
                 ->required()
                 ->label(trans('filament-user::user.resource.email')),
+            TextInput::make('phone')
+                ->required()
+                ->label('Số điện thoại'),
             TextInput::make('password')
                 ->label(trans('filament-user::user.resource.password'))
                 ->password()
@@ -81,6 +92,21 @@ class UserResource extends Resource
                 ->relationship('roles', 'name')
                 ->label(trans('filament-user::user.resource.roles'));
         }
+        $rows[] = TextInput::make('balance')
+            ->disabled()
+            ->label('Số dư')
+            ->disabled()
+            ->hidden(function () use ($form) {
+                return $form->getOperation() == 'create';
+            });
+        $rows[] = Forms\Components\Select::make('status')
+            ->label('Trạng thái')
+            ->required()
+            ->options([
+                'active' => 'Kích hoạt',
+                'inactive' => 'Không kích hoạt'
+            ])
+            ->default('active');
 
         $form->schema($rows);
 
@@ -99,37 +125,66 @@ class UserResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label(trans('filament-user::user.resource.name')),
+                TextColumn::make('username')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Username'),
                 TextColumn::make('email')
                     ->sortable()
                     ->searchable()
                     ->label(trans('filament-user::user.resource.email')),
-                IconColumn::make('email_verified_at')
-                    ->boolean()
+                TextColumn::make('phone')
                     ->sortable()
                     ->searchable()
-                    ->label(trans('filament-user::user.resource.email_verified_at')),
+                    ->label('Số điện thoại'),
+                TextColumn::make('balance')
+                    ->sortable()
+                    ->searchable()
+                    ->numeric()
+                    ->label('Số dư'),
+                TextColumn::make('status')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Trạng thái'),
                 TextColumn::make('created_at')
                     ->label(trans('filament-user::user.resource.created_at'))
-                    ->dateTime('M j, Y')
+                    ->dateTime('d/m/Y')
                     ->sortable(),
                 TextColumn::make('updated_at')
                     ->label(trans('filament-user::user.resource.updated_at'))
-                    ->dateTime('M j, Y')
+                    ->dateTime('d/m/Y')
                     ->sortable(),
             ])
             ->filters([
-                Tables\Filters\Filter::make('verified')
-                    ->label(trans('filament-user::user.resource.verified'))
-                    ->query(fn(Builder $query): Builder => $query->whereNotNull('email_verified_at')),
-                Tables\Filters\Filter::make('unverified')
-                    ->label(trans('filament-user::user.resource.unverified'))
-                    ->query(fn(Builder $query): Builder => $query->whereNull('email_verified_at')),
+//                Tables\Filters\Filter::make('verified')
+//                    ->label(trans('filament-user::user.resource.verified'))
+//                    ->query(fn(Builder $query): Builder => $query->whereNotNull('email_verified_at')),
+//                Tables\Filters\Filter::make('unverified')
+//                    ->label(trans('filament-user::user.resource.unverified'))
+//                    ->query(fn(Builder $query): Builder => $query->whereNull('email_verified_at')),
             ])
             ->actions([
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
-                    DeleteAction::make()
+                    DeleteAction::make(),
+                    Tables\Actions\Action::make('deposit')
+                        ->label('Nạp tiền')
+                        ->icon('heroicon-s-document-plus')
+                        ->form([
+                            TextInput::make('balance')
+                                ->label('Số tiền cần nạp')
+                                ->numeric()
+                                ->required()
+                                ->minValue(1000)
+                                ->default(1000)
+                        ])
+                        ->requiresConfirmation()
+                        ->action(function (array $data, User $record) {
+                            $balanceService = app(BalanceService::class);
+                            $reason = "Nạp tiền bởi admin: " . auth()->user()->name;
+                            $balanceService->deposit($record->id, $data['balance'], $reason);
+                        })
                 ]),
             ]);
         return $table;
