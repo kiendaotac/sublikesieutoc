@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://sublikesieutoc.com" />
     <meta property="og:site_name" content="Sublikesieutoc" />
     <link rel="canonical" href="https://sublikesieutoc.com" />
-    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.png') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -52,8 +52,8 @@
                     <!--end::Sidebar mobile toggle-->
                     <!--begin::Logo-->
                     <a href="/" class="app-sidebar-logo">
-                        <img alt="Logo" src="{{ asset('assets/media/logos/demo39.svg') }}" class="h-25px theme-light-show" />
-                        <img alt="Logo" src="{{ asset('assets/media/logos/demo39-dark.svg') }}" class="h-25px theme-dark-show" />
+                        <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="h-25px theme-light-show" />
+                        <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="h-25px theme-dark-show" />
                     </a>
                     <!--end::Logo-->
                 </div>
