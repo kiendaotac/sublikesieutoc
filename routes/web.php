@@ -21,6 +21,7 @@ Route::group(['namespace' => 'App\Livewire'], function () {
 Route::group(['namespace' => 'App\Livewire', 'middleware' => 'auth'], function () {
     Route::get('dashboard', 'Dashboard')->name('dashboard');
     Route::get('profile', 'Profile')->name('profile');
+    Route::get('payment', 'Payment')->name('payment');
     Route::get('dich-vu/{slug}', 'Service')->name('service');
 });
 

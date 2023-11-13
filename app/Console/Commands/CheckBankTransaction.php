@@ -53,7 +53,7 @@ class CheckBankTransaction extends Command
     {
         try {
             \DB::beginTransaction();
-            $check = preg_match('/sublike\s(\w*)/i', $transaction['MoTa'], $matches);
+            $check = preg_match('/naptien\s(\w*)/i', $transaction['MoTa'], $matches);
             if ($check) {
 
                 $username = trim($matches[1]);
