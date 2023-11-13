@@ -48,6 +48,25 @@
                 </div>
                 <!--end:Menu item-->
             @endforeach
+            <div class="menu-item">
+                <a href="{{ route('profile') }}" class="menu-link">
+                    <i class="fs-2x ki-duotone ki-profile-circle">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                    </i>
+                    <span class="menu-title">Trang cá nhân</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{{ route('logout') }}" class="menu-link">
+                    <i class="fs-2x ki-duotone ki-exit-right">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    <span class="menu-title">Đăng xuất</span>
+                </a>
+            </div>
         </div>
         <!--end::Sidebar menu-->
     </div>
