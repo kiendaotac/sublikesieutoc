@@ -22,4 +22,9 @@ class Service extends Model
         return $this->belongsTo(Service::class, 'parent_id');
     }
 
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
 }

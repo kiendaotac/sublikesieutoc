@@ -142,8 +142,14 @@
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab" href="#tab-pane-payment-method">Phương thức thanh toán</a>
                         </li>
                         <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#tab-pane-activity">Lịch sử hoạt động</a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#tab-panel-order">Danh sách đơn hàng</a>
                         </li>
+                        <li class="nav-item mt-2">
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#tab-panel-deposit">Lịch sử nạp tiền</a>
+                        </li>
+{{--                        <li class="nav-item mt-2">--}}
+{{--                            <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#tab-pane-activity">Lịch sử hoạt động</a>--}}
+{{--                        </li>--}}
                     </ul>
                     <!--begin::Navs-->
                 </div>
@@ -1772,6 +1778,12 @@
                         <!--end::Card body-->
                     </div>
                     <!--end::Timeline-->
+                </div>
+                <div class="tab-pane" id="tab-panel-order" role="tabpanel">
+                    <livewire:profile.order />
+                </div>
+                <div class="tab-pane" id="tab-panel-deposit" role="tabpanel">
+                    <livewire:profile.balance />
                 </div>
             </div>
         </div>

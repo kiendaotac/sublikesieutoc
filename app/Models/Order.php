@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['service_id', 'user_id', 'service_type', 'target_identify', 'target', 'original', 'price', 'amount', 'extra_data', 'note', 'status'];
+    protected $fillable = ['service_id', 'product_id', 'user_id', 'service_type', 'target_identify', 'target', 'original', 'price', 'amount', 'extra_data', 'note', 'status'];
 
     protected $casts = [
         'extra_data' => 'array'
@@ -19,5 +19,10 @@ class Order extends Model
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
     }
 }
