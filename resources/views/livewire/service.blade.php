@@ -103,9 +103,9 @@
                                     <div class="card-body pt-2">
                                         @foreach($service->products as $product)
                                             <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-8">
+                                            <div class="d-flex align-items-center mb-2 border-bottom-1">
                                                 <!--begin::Bullet-->
-                                                <span class="bullet bullet-vertical h-40px bg-success"></span>
+{{--                                                <span class="bullet bullet-vertical h-40px bg-success"></span>--}}
                                                 <!--end::Bullet-->
                                                 <!--begin::Checkbox-->
                                                 <div class="form-check form-check-custom form-check-solid mx-5">
@@ -113,12 +113,9 @@
                                                 </div>
                                                 <!--end::Checkbox-->
                                                 <!--begin::Description-->
-                                                <div class="flex-grow-1">
-                                                    <label for="product_{{ $product->id }}" class="text-gray-800 text-hover-primary fw-bold fs-6 cursor-pointer">{{ $product->name }}
-                                                        <span class="text-muted fw-semibold d-block">{{ $product->description }}</span>
-                                                        <span class="badge badge-light-success fs-8 fw-bold">{{ \Illuminate\Support\Number::currency($product->price, 'VND', 'vi') }}</span>
-                                                    </label>
-                                                </div>
+                                                <label for="product_{{ $product->id }}" class="mx-2 text-gray-800 text-hover-primary fw-bold fs-8 cursor-pointer">{{ $product->name }}</label>
+                                                <span class="mx-2 text-muted fw-semibold d-block fs-8">{{ $product->description }}</span>
+                                                <span class="mx-2 badge badge-light-success fs-8 fw-bold">{{ \Illuminate\Support\Number::currency($product->price, 'VND', 'vi') }}</span>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end:Item-->
@@ -240,4 +237,12 @@
     <script src="{{ asset('assets/js/custom/utilities/modals/create-campaign.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Custom Javascript-->
+@endpush
+
+@push('css')
+    <style>
+        .form-check .form-check-input:not(:checked) {
+            background-color: var(--bs-gray-400)!important;
+        }
+    </style>
 @endpush

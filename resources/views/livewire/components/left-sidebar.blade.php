@@ -59,6 +59,25 @@
                 </a>
             </div>
             <div class="menu-item">
+                <a href="{{ route('profile.order') }}" class="menu-link">
+                    <i class="fs-2x ki-duotone ki-shop">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                    </i>
+                    <span class="menu-title">Danh sách đơn hàng</span>
+                </a>
+            </div><div class="menu-item">
+                <a href="{{ route('profile.deposit') }}" class="menu-link">
+                    <i class="fs-2x ki-duotone ki-enjin-coin">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                    </i>
+                    <span class="menu-title">Lịch sử nạp tiền</span>
+                </a>
+            </div>
+            <div class="menu-item">
                 <a href="{{ route('logout') }}" class="menu-link">
                     <i class="fs-2x ki-duotone ki-exit-right">
                         <span class="path1"></span>
