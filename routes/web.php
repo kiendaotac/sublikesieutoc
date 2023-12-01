@@ -23,6 +23,8 @@ Route::group(['namespace' => 'App\Livewire', 'middleware' => 'auth'], function (
     Route::get('profile', 'Profile')->name('profile');
     Route::get('payment', 'Payment')->name('payment');
     Route::get('dich-vu/{slug}', 'Service')->name('service');
+    Route::get('order', 'Profile\\Order')->name('profile.order');
+    Route::get('deposit', 'Profile\\Balance')->name('profile.deposit');
 });
 
 Route::group(['namespace' => 'App\Livewire', 'middleware' => 'guest'], function () {
