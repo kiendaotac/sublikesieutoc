@@ -100,6 +100,20 @@
                                 @enderror
                             </div>
                             <!--begin::Input group-->
+                            <!--begin::Input group=-->
+                            <div class="fv-row mb-8">
+                                <!--begin::Username-->
+                                <input wire:model.debounce="form.phone" type="text" placeholder="Số điện thoại" name="phone" autocomplete="off" class="form-control bg-transparent" />
+                                <!--end::Username-->
+                                @error('form.phone')
+                                <div class="fv-plugins-message-container invalid-feedback">
+                                    <div data-field="password" data-validator="notEmpty">
+                                        {{ $message }}
+                                    </div>
+                                </div>
+                                @enderror
+                            </div>
+                            <!--begin::Input group-->
                             <div class="fv-row mb-8" data-kt-password-meter="true">
                                 <!--begin::Wrapper-->
                                 <div class="mb-1">

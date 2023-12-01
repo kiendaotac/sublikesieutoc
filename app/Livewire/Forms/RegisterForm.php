@@ -19,13 +19,15 @@ class RegisterForm extends Form
 
     #[Rule(['required', 'email', 'unique:users,email'])]
     public string $email;
-    #[Rule(['required', 'string', 'alpha_dash', 'min:6', 'unique:users,username'])]
+    #[Rule(['required', 'string', 'alpha_dash', 'min:6', 'unique:users,username'], as: 'tài khoản')]
     public string $username;
-    #[Rule(['required', 'string', 'min:8', 'confirmed'])]
+    #[Rule(['required', 'numeric', 'digits_between:8,12', 'unique:users,phone'], as: 'số điện thoại')]
+    public string $phone;
+    #[Rule(['required', 'string', 'min:8', 'confirmed'], as: 'mật khẩu')]
     public string $password;
-    #[Rule(['required', 'string', 'min:8'])]
+    #[Rule(['required', 'string', 'min:8'], as: 'mật khẩu')]
     public string $password_confirmation;
-    #[Rule(['required', 'bool', 'in:1'])]
+    #[Rule(['required', 'bool', 'in:1'], as: 'điều khoản')]
     public string $accept;
 
     public function register()
@@ -49,10 +51,9 @@ class RegisterForm extends Form
             return null;
         }
 
-        $data = $this->only(['email', 'username', 'password']);
+        $data         = $this->only(['email', 'username', 'phone', 'password']);
         $data['name'] = $data['username'];
-
-        $user = User::create($data);
+        $user         = User::create($data);
 
 //        app()->bind(
 //            \Illuminate\Auth\Listeners\SendEmailVerificationNotification::class,

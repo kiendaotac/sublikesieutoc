@@ -14,7 +14,7 @@ class Register extends Component
         return view('livewire.authentication.register')->layout('components.layouts.authentication');
     }
 
-    public function register()
+    public function register(): void
     {
         $this->form->register();
     }

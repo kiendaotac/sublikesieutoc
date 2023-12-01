@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Product;
 use App\Models\Service;
 use App\Repositories\Contracts\OrderInterface;
 
@@ -25,8 +26,8 @@ class OrderService
         return $this->order->confirmPaid($orderId);
     }
 
-    public function calculateAmount(int $target, Service $service): int
+    public function calculateAmount(int $target, Product $product): int
     {
-        return $target * $service->price;
+        return $target * $product->price;
     }
 }

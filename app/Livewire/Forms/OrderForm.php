@@ -3,13 +3,13 @@
 namespace App\Livewire\Forms;
 
 use App\Enums\OrderStatusEnum;
-use App\Models\Order;
+use App\Models\Product;
 use App\Models\Service;
 use App\Services\BalanceService;
 use App\Services\OrderService;
-use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Form;
 use Spatie\Activitylog\ActivityLogger;
@@ -26,16 +26,16 @@ class OrderForm extends Form
     public Service $service;
     #[Rule('required|bool|in:1')]
     public bool $term = false;
+    #[Validate('required|int')]
+    public $product_id;
 
     private OrderService $orderService;
-    private UserService $userService;
     private BalanceService $balanceService;
 
     public function __construct(Component $component, $propertyName)
     {
         parent::__construct($component, $propertyName);
         $this->orderService   = app(OrderService::class);
-        $this->userService    = app(UserService::class);
         $this->balanceService = app(BalanceService::class);
     }
 
@@ -69,15 +69,17 @@ class OrderForm extends Form
     {
         $this->validate();
         $userId = Auth::id();
+        $product = Product::findOrFail($this->product_id);
         $data   = [
             'service_id'      => $this->service->id,
+            'product_id'      => $this->product_id,
             'user_id'         => $userId,
             'service_type'    => $this->service->type,
             'target_identify' => $this->targetIdentify,
             'target'          => $this->target,
             'original'        => $this->original,
-            'price'           => $this->service->price,
-            'amount'          => $this->orderService->calculateAmount($this->target, $this->service),
+            'price'           => $product->price,
+            'amount'          => $this->orderService->calculateAmount($this->target, $product),
             'extra_data'      => [],
             'note'            => $this->note,
             'status'          => OrderStatusEnum::STATUS_PENDING->value,

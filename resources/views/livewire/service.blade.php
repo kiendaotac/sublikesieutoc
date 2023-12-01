@@ -1,5 +1,5 @@
 @push('css')
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+{{--    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />--}}
 @endpush
 <div class="d-flex flex-column flex-column-fluid">
     <!--begin::Toolbar-->
@@ -71,15 +71,6 @@
                                 <div class="fv-row">
                                     <label class="form-label">{!! $service->description !!}</label>
                                 </div>
-                                <!--begin::Input group-->
-                                <div class="fv-row">
-                                    <!--begin::Label-->
-                                    <label class="form-label">Giá dịch vụ:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Auto-generated ID-->
-                                    <div class="fw-bold fs-3">{{ number_format($service->price) }} đ</div>
-                                    <!--end::Input-->
-                                </div>
                             </div>
                         </div>
                         <!--end::Card header-->
@@ -100,6 +91,48 @@
                         <!--end::Card header-->
                         <!--begin::Card body-->
                         <div class="card-body pt-0">
+                            <div class="col-12">
+                                <!--begin::List Widget 3-->
+                                <div class="card card-xl-stretch mb-5 mb-xl-8">
+                                    <!--begin::Header-->
+                                    <div class="card-header border-0">
+                                        <h3 class="card-title fw-bold text-dark">Chọn chi tiết dịch vụ</h3>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Body-->
+                                    <div class="card-body pt-2">
+                                        @foreach($service->products as $product)
+                                            <!--begin::Item-->
+                                            <div class="d-flex align-items-center mb-8">
+                                                <!--begin::Bullet-->
+                                                <span class="bullet bullet-vertical h-40px bg-success"></span>
+                                                <!--end::Bullet-->
+                                                <!--begin::Checkbox-->
+                                                <div class="form-check form-check-custom form-check-solid mx-5">
+                                                    <input id="product_{{ $product->id }}" wire:model.live="orderForm.product_id" class="form-check-input" type="radio" value="{{ $product->id }}" />
+                                                </div>
+                                                <!--end::Checkbox-->
+                                                <!--begin::Description-->
+                                                <div class="flex-grow-1">
+                                                    <label for="product_{{ $product->id }}" class="text-gray-800 text-hover-primary fw-bold fs-6 cursor-pointer">{{ $product->name }}
+                                                        <span class="text-muted fw-semibold d-block">{{ $product->description }}</span>
+                                                        <span class="badge badge-light-success fs-8 fw-bold">{{ \Illuminate\Support\Number::currency($product->price, 'VND', 'vi') }}</span>
+                                                    </label>
+                                                </div>
+                                                <!--end::Description-->
+                                            </div>
+                                            <!--end:Item-->
+                                        @endforeach
+                                        @error('orderForm.product')
+                                            <div class="form-text text-danger">
+                                            {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end:List Widget 3-->
+                            </div>
                             <!--begin::Billing address-->
                             <div class="d-flex flex-column gap-5 gap-md-7">
                                 <!--begin::Input group-->
@@ -155,7 +188,7 @@
                                     @enderror
                                 </div>
                                 <div class="fw-bold fs-4">Tổng tiền = (số lượng) x (giá):
-                                    <span id="kt_ecommerce_edit_order_total_price">{{ number_format($service->price * $orderForm->target) }}đ</span>
+                                    <span id="kt_ecommerce_edit_order_total_price">{{ \Illuminate\Support\Number::currency($productPrice * $orderForm->target ?? 0, 'VND', 'vi') }}</span>
                                 </div>
                                 <div class="form-check form-check-custom form-check-solid">
                                     <input wire:model.debounce="orderForm.term" class="form-check-input cursor-pointer" id="term" type="checkbox" />
