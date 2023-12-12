@@ -172,7 +172,7 @@
                                     </div>
                                     <div class="fv-row flex-row-fluid fv-plugins-icon-container">
                                         <label for="target" class="required form-label">Số lượng tăng thêm</label>
-                                        <input id="target" wire:model.live="orderForm.target" class="form-control" placeholder="Số lượng tăng thêm" type="number" />
+                                        <input min="{{ intval($selectedProduct->min_target ?? 0) }}" id="target" wire:model.live="orderForm.target" class="form-control" placeholder="Số lượng tăng thêm" type="number" />
                                         @error('orderForm.target')
                                         <div class="form-text text-danger">
                                             {{ $message }}
