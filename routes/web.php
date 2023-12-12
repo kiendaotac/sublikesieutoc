@@ -36,3 +36,10 @@ Route::get('logout', function () {
     \Filament\Facades\Filament::auth()->logout();
     return redirect()->route('home-page');
 })->middleware('auth')->name('logout');
+
+Route::get('test', function () {
+    $user = \App\Models\User::first();
+    $voucherService = app(\App\Services\VoucherService::class);
+    $voucher = $voucherService->getAvailableVoucher($user, 500000);
+    dd($voucher);
+});

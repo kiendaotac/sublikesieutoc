@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.26.2.
+ * Generated for Laravel 10.34.2.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -435,6 +435,18 @@
         {
                         /** @var \Illuminate\Foundation\Application $instance */
                         return $instance->runningInConsole();
+        }
+                    /**
+         * Determine if the application is running any of the given console commands.
+         *
+         * @param string|array $commands
+         * @return bool 
+         * @static 
+         */ 
+        public static function runningConsoleCommand(...$commands)
+        {
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        return $instance->runningConsoleCommand(...$commands);
         }
                     /**
          * Determine if the application is running unit tests.
@@ -1974,14 +1986,39 @@
                         return $instance->getDefaultUserProvider();
         }
                     /**
+         * Log a user into the application without firing the Login event.
+         *
+         * @param \Illuminate\Contracts\Auth\Authenticatable $user
+         * @return void 
+         * @static 
+         */ 
+        public static function quietLogin($user)
+        {
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
+                        $instance->quietLogin($user);
+        }
+                    /**
+         * Logout the user without updating remember_token
+         * and without firing the Logout event.
+         *
+         * @param void
+         * @return void 
+         * @static 
+         */ 
+        public static function quietLogout()
+        {
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
+                        $instance->quietLogout();
+        }
+                    /**
          * Get the currently authenticated user.
          *
          * @return \App\Models\User|null 
          * @static 
          */ 
         public static function user()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->user();
         }
                     /**
@@ -1991,8 +2028,8 @@
          * @static 
          */ 
         public static function id()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->id();
         }
                     /**
@@ -2003,8 +2040,8 @@
          * @static 
          */ 
         public static function once($credentials = [])
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->once($credentials);
         }
                     /**
@@ -2015,8 +2052,8 @@
          * @static 
          */ 
         public static function onceUsingId($id)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->onceUsingId($id);
         }
                     /**
@@ -2027,8 +2064,8 @@
          * @static 
          */ 
         public static function validate($credentials = [])
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->validate($credentials);
         }
                     /**
@@ -2041,8 +2078,8 @@
          * @static 
          */ 
         public static function basic($field = 'email', $extraConditions = [])
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->basic($field, $extraConditions);
         }
                     /**
@@ -2055,8 +2092,8 @@
          * @static 
          */ 
         public static function onceBasic($field = 'email', $extraConditions = [])
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->onceBasic($field, $extraConditions);
         }
                     /**
@@ -2068,8 +2105,8 @@
          * @static 
          */ 
         public static function attempt($credentials = [], $remember = false)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->attempt($credentials, $remember);
         }
                     /**
@@ -2082,8 +2119,8 @@
          * @static 
          */ 
         public static function attemptWhen($credentials = [], $callbacks = null, $remember = false)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->attemptWhen($credentials, $callbacks, $remember);
         }
                     /**
@@ -2095,8 +2132,8 @@
          * @static 
          */ 
         public static function loginUsingId($id, $remember = false)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->loginUsingId($id, $remember);
         }
                     /**
@@ -2108,8 +2145,8 @@
          * @static 
          */ 
         public static function login($user, $remember = false)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         $instance->login($user, $remember);
         }
                     /**
@@ -2119,8 +2156,8 @@
          * @static 
          */ 
         public static function logout()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         $instance->logout();
         }
                     /**
@@ -2132,8 +2169,8 @@
          * @static 
          */ 
         public static function logoutCurrentDevice()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         $instance->logoutCurrentDevice();
         }
                     /**
@@ -2148,8 +2185,8 @@
          * @static 
          */ 
         public static function logoutOtherDevices($password, $attribute = 'password')
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->logoutOtherDevices($password, $attribute);
         }
                     /**
@@ -2160,8 +2197,8 @@
          * @static 
          */ 
         public static function attempting($callback)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         $instance->attempting($callback);
         }
                     /**
@@ -2171,8 +2208,8 @@
          * @static 
          */ 
         public static function getLastAttempted()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getLastAttempted();
         }
                     /**
@@ -2182,8 +2219,8 @@
          * @static 
          */ 
         public static function getName()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getName();
         }
                     /**
@@ -2193,8 +2230,8 @@
          * @static 
          */ 
         public static function getRecallerName()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getRecallerName();
         }
                     /**
@@ -2204,20 +2241,20 @@
          * @static 
          */ 
         public static function viaRemember()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->viaRemember();
         }
                     /**
          * Set the number of minutes the remember me cookie should be valid for.
          *
          * @param int $minutes
-         * @return \Illuminate\Auth\SessionGuard 
+         * @return \Lab404\Impersonate\Guard\SessionGuard 
          * @static 
          */ 
         public static function setRememberDuration($minutes)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->setRememberDuration($minutes);
         }
                     /**
@@ -2228,8 +2265,8 @@
          * @static 
          */ 
         public static function getCookieJar()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getCookieJar();
         }
                     /**
@@ -2240,8 +2277,8 @@
          * @static 
          */ 
         public static function setCookieJar($cookie)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         $instance->setCookieJar($cookie);
         }
                     /**
@@ -2251,8 +2288,8 @@
          * @static 
          */ 
         public static function getDispatcher()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getDispatcher();
         }
                     /**
@@ -2263,8 +2300,8 @@
          * @static 
          */ 
         public static function setDispatcher($events)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         $instance->setDispatcher($events);
         }
                     /**
@@ -2274,8 +2311,8 @@
          * @static 
          */ 
         public static function getSession()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getSession();
         }
                     /**
@@ -2285,20 +2322,20 @@
          * @static 
          */ 
         public static function getUser()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getUser();
         }
                     /**
          * Set the current user.
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @return \Illuminate\Auth\SessionGuard 
+         * @return \Lab404\Impersonate\Guard\SessionGuard 
          * @static 
          */ 
         public static function setUser($user)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->setUser($user);
         }
                     /**
@@ -2308,20 +2345,20 @@
          * @static 
          */ 
         public static function getRequest()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getRequest();
         }
                     /**
          * Set the current request instance.
          *
          * @param \Symfony\Component\HttpFoundation\Request $request
-         * @return \Illuminate\Auth\SessionGuard 
+         * @return \Lab404\Impersonate\Guard\SessionGuard 
          * @static 
          */ 
         public static function setRequest($request)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->setRequest($request);
         }
                     /**
@@ -2331,8 +2368,8 @@
          * @static 
          */ 
         public static function getTimebox()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getTimebox();
         }
                     /**
@@ -2343,8 +2380,8 @@
          * @static 
          */ 
         public static function authenticate()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->authenticate();
         }
                     /**
@@ -2354,8 +2391,8 @@
          * @static 
          */ 
         public static function hasUser()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->hasUser();
         }
                     /**
@@ -2365,8 +2402,8 @@
          * @static 
          */ 
         public static function check()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->check();
         }
                     /**
@@ -2376,19 +2413,19 @@
          * @static 
          */ 
         public static function guest()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->guest();
         }
                     /**
          * Forget the current user.
          *
-         * @return \Illuminate\Auth\SessionGuard 
+         * @return \Lab404\Impersonate\Guard\SessionGuard 
          * @static 
          */ 
         public static function forgetUser()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->forgetUser();
         }
                     /**
@@ -2398,8 +2435,8 @@
          * @static 
          */ 
         public static function getProvider()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->getProvider();
         }
                     /**
@@ -2410,8 +2447,8 @@
          * @static 
          */ 
         public static function setProvider($provider)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         $instance->setProvider($provider);
         }
                     /**
@@ -2423,8 +2460,8 @@
          * @static 
          */ 
         public static function macro($name, $macro)
-        {
-                        \Illuminate\Auth\SessionGuard::macro($name, $macro);
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        \Lab404\Impersonate\Guard\SessionGuard::macro($name, $macro);
         }
                     /**
          * Mix another object into the class.
@@ -2436,8 +2473,8 @@
          * @static 
          */ 
         public static function mixin($mixin, $replace = true)
-        {
-                        \Illuminate\Auth\SessionGuard::mixin($mixin, $replace);
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        \Lab404\Impersonate\Guard\SessionGuard::mixin($mixin, $replace);
         }
                     /**
          * Checks if macro is registered.
@@ -2447,8 +2484,8 @@
          * @static 
          */ 
         public static function hasMacro($name)
-        {
-                        return \Illuminate\Auth\SessionGuard::hasMacro($name);
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        return \Lab404\Impersonate\Guard\SessionGuard::hasMacro($name);
         }
                     /**
          * Flush the existing macros.
@@ -2457,8 +2494,8 @@
          * @static 
          */ 
         public static function flushMacros()
-        {
-                        \Illuminate\Auth\SessionGuard::flushMacros();
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        \Lab404\Impersonate\Guard\SessionGuard::flushMacros();
         }
          
     }
@@ -3506,6 +3543,18 @@
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
                         $instance->assertDispatchedWithoutChain($command, $callback);
+        }
+                    /**
+         * Create a new assertion about a chained batch.
+         *
+         * @param \Closure $callback
+         * @return \Illuminate\Support\Testing\Fakes\ChainedBatchTruthTest 
+         * @static 
+         */ 
+        public static function chainedBatch($callback)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        return $instance->chainedBatch($callback);
         }
                     /**
          * Assert if a batch was dispatched based on a truth-test callback.
@@ -5550,6 +5599,18 @@
                         return $instance->pretend($callback);
         }
                     /**
+         * Execute the given callback without "pretending".
+         *
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */ 
+        public static function withoutPretending($callback)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        return $instance->withoutPretending($callback);
+        }
+                    /**
          * Bind values to their parameters in the given statement.
          *
          * @param \PDOStatement $statement
@@ -6475,6 +6536,18 @@
         {
                         /** @var \Illuminate\Events\Dispatcher $instance */
                         return $instance->setQueueResolver($resolver);
+        }
+                    /**
+         * Set the database transaction manager resolver implementation.
+         *
+         * @param callable $resolver
+         * @return \Illuminate\Events\Dispatcher 
+         * @static 
+         */ 
+        public static function setTransactionManagerResolver($resolver)
+        {
+                        /** @var \Illuminate\Events\Dispatcher $instance */
+                        return $instance->setTransactionManagerResolver($resolver);
         }
                     /**
          * Gets the raw, unprepared listeners.
@@ -8143,6 +8216,17 @@
                         return $instance->getDispatcher();
         }
                     /**
+         * Get the array of global middleware.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getGlobalMiddleware()
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->getGlobalMiddleware();
+        }
+                    /**
          * Register a custom macro.
          *
          * @param string $name
@@ -8294,6 +8378,18 @@
         {
                         /** @var \Illuminate\Translation\Translator $instance */
                         $instance->load($namespace, $group, $locale);
+        }
+                    /**
+         * Register a callback that is responsible for handling missing translation keys.
+         *
+         * @param callable|null $callback
+         * @return static 
+         * @static 
+         */ 
+        public static function handleMissingKeysUsing($callback)
+        {
+                        /** @var \Illuminate\Translation\Translator $instance */
+                        return $instance->handleMissingKeysUsing($callback);
         }
                     /**
          * Add a new namespace to the loader.
@@ -13475,6 +13571,7 @@
      * @method static \Illuminate\Routing\RouteRegistrar controller(string $controller)
      * @method static \Illuminate\Routing\RouteRegistrar domain(string $value)
      * @method static \Illuminate\Routing\RouteRegistrar middleware(array|string|null $middleware)
+     * @method static \Illuminate\Routing\RouteRegistrar missing(\Closure $missing)
      * @method static \Illuminate\Routing\RouteRegistrar name(string $value)
      * @method static \Illuminate\Routing\RouteRegistrar namespace(string|null $value)
      * @method static \Illuminate\Routing\RouteRegistrar prefix(string $prefix)
@@ -14437,6 +14534,16 @@
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
         }
+                    /**
+         * 
+         *
+         * @see \Lab404\Impersonate\ImpersonateServiceProvider::registerRoutesMacro()
+         * @static 
+         */ 
+        public static function impersonate()
+        {
+                        return \Illuminate\Routing\Router::impersonate();
+        }
          
     }
             /**
@@ -14470,28 +14577,62 @@
                         return $instance->dropDatabaseIfExists($name);
         }
                     /**
-         * Determine if the given table exists.
+         * Get the tables for the database.
          *
-         * @param string $table
-         * @return bool 
+         * @return array 
          * @static 
          */ 
-        public static function hasTable($table)
+        public static function getTables()
         {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->hasTable($table);
+                        return $instance->getTables();
         }
                     /**
-         * Get the column listing for a given table.
+         * Get the views for the database.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getViews()
+        {
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getViews();
+        }
+                    /**
+         * Get all of the table names for the database.
+         *
+         * @deprecated Will be removed in a future Laravel version.
+         * @return array 
+         * @static 
+         */ 
+        public static function getAllTables()
+        {
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getAllTables();
+        }
+                    /**
+         * Get all of the view names for the database.
+         *
+         * @deprecated Will be removed in a future Laravel version.
+         * @return array 
+         * @static 
+         */ 
+        public static function getAllViews()
+        {
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getAllViews();
+        }
+                    /**
+         * Get the columns for a given table.
          *
          * @param string $table
          * @return array 
          * @static 
          */ 
-        public static function getColumnListing($table)
+        public static function getColumns($table)
         {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getColumnListing($table);
+                        return $instance->getColumns($table);
         }
                     /**
          * Drop all tables from the database.
@@ -14514,28 +14655,6 @@
         {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                         $instance->dropAllViews();
-        }
-                    /**
-         * Get all of the table names for the database.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getAllTables()
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getAllTables();
-        }
-                    /**
-         * Get all of the view names for the database.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getAllViews()
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getAllViews();
         }
                     /**
          * Set the default string length for migrations.
@@ -14590,6 +14709,18 @@
         public static function useNativeSchemaOperationsIfPossible($value = true)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         \Illuminate\Database\Schema\MySqlBuilder::useNativeSchemaOperationsIfPossible($value);
+        }
+                    /**
+         * Determine if the given table exists.
+         *
+         * @param string $table
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasTable($table)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->hasTable($table);
         }
                     /**
          * Determine if the given table has a given column.
@@ -14650,13 +14781,26 @@
          *
          * @param string $table
          * @param string $column
+         * @param bool $fullDefinition
          * @return string 
          * @static 
          */ 
-        public static function getColumnType($table, $column)
+        public static function getColumnType($table, $column, $fullDefinition = false)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getColumnType($table, $column);
+                        return $instance->getColumnType($table, $column, $fullDefinition);
+        }
+                    /**
+         * Get the column listing for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */ 
+        public static function getColumnListing($table)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getColumnListing($table);
         }
                     /**
          * Modify a table on the schema.
@@ -14844,6 +14988,28 @@
         {
                         /** @var \Illuminate\Session\SessionManager $instance */
                         return $instance->blockDriver();
+        }
+                    /**
+         * Get the maximum number of seconds the session lock should be held for.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function defaultRouteBlockLockSeconds()
+        {
+                        /** @var \Illuminate\Session\SessionManager $instance */
+                        return $instance->defaultRouteBlockLockSeconds();
+        }
+                    /**
+         * Get the maximum number of seconds to wait while attempting to acquire a route block session lock.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function defaultRouteBlockWaitSeconds()
+        {
+                        /** @var \Illuminate\Session\SessionManager $instance */
+                        return $instance->defaultRouteBlockWaitSeconds();
         }
                     /**
          * Get the session configuration.
@@ -18351,6 +18517,13 @@
      * 
      *
      */ 
+        class Number {
+         
+    }
+            /**
+     * 
+     *
+     */ 
         class Str {
                     /**
          * 
@@ -18387,7 +18560,155 @@
      
 }
 
-        namespace Livewire { 
+        namespace BezhanSalleh\FilamentShield\Facades { 
+            /**
+     * 
+     *
+     * @see \BezhanSalleh\FilamentShield\FilamentShield
+     */ 
+        class FilamentShield {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function configurePermissionIdentifierUsing($callback)
+        {
+                        /** @var \BezhanSalleh\FilamentShield\FilamentShield $instance */
+                        return $instance->configurePermissionIdentifierUsing($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getPermissionIdentifier($resource)
+        {
+                        /** @var \BezhanSalleh\FilamentShield\FilamentShield $instance */
+                        return $instance->getPermissionIdentifier($resource);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generateForResource($entity)
+        {
+                        /** @var \BezhanSalleh\FilamentShield\FilamentShield $instance */
+                        return $instance->generateForResource($entity);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generateForPage($page)
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::generateForPage($page);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generateForWidget($widget)
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::generateForWidget($widget);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function createRole($name = null)
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::createRole($name);
+        }
+                    /**
+         * Transform filament resources to key value pair for shield
+         *
+         * @static 
+         */ 
+        public static function getResources()
+        {
+                        /** @var \BezhanSalleh\FilamentShield\FilamentShield $instance */
+                        return $instance->getResources();
+        }
+                    /**
+         * Get the localized resource label
+         *
+         * @static 
+         */ 
+        public static function getLocalizedResourceLabel($entity)
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::getLocalizedResourceLabel($entity);
+        }
+                    /**
+         * Get the localized resource permission label
+         *
+         * @static 
+         */ 
+        public static function getLocalizedResourcePermissionLabel($permission)
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::getLocalizedResourcePermissionLabel($permission);
+        }
+                    /**
+         * Transform filament pages to key value pair for shield
+         *
+         * @static 
+         */ 
+        public static function getPages()
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::getPages();
+        }
+                    /**
+         * Get localized page label
+         *
+         * @static 
+         */ 
+        public static function getLocalizedPageLabel($page)
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::getLocalizedPageLabel($page);
+        }
+                    /**
+         * Transform filament widgets to key value pair for shield
+         *
+         * @static 
+         */ 
+        public static function getWidgets()
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::getWidgets();
+        }
+                    /**
+         * Get localized widget label
+         *
+         * @static 
+         */ 
+        public static function getLocalizedWidgetLabel($widget)
+        {
+                        return \BezhanSalleh\FilamentShield\FilamentShield::getLocalizedWidgetLabel($widget);
+        }
+                    /**
+         * 
+         *
+         * @template T
+         * @param \BezhanSalleh\FilamentShield\T  | callable(): T  $value
+         * @param array<string, mixed> $namedInjections
+         * @param array<string, mixed> $typedInjections
+         * @return \BezhanSalleh\FilamentShield\T 
+         * @static 
+         */ 
+        public static function evaluate($value, $namedInjections = [], $typedInjections = [])
+        {
+                        /** @var \BezhanSalleh\FilamentShield\FilamentShield $instance */
+                        return $instance->evaluate($value, $namedInjections, $typedInjections);
+        }
+         
+    }
+     
+}
+
+    namespace Livewire { 
             /**
      * 
      *
@@ -19541,6 +19862,68 @@
      
 }
 
+    namespace Illuminate\Routing { 
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Routing\RouteRegistrar
+     */ 
+        class Router {
+                    /**
+         * 
+         *
+         * @see \Lab404\Impersonate\ImpersonateServiceProvider::registerRoutesMacro()
+         * @static 
+         */ 
+        public static function impersonate()
+        {
+                        return \Illuminate\Routing\Router::impersonate();
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Route {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportLazyLoading\SupportLazyLoading::registerRouteMacro()
+         * @param mixed $enabled
+         * @static 
+         */ 
+        public static function lazy($enabled = true)
+        {
+                        return \Illuminate\Routing\Route::lazy($enabled);
+        }
+                    /**
+         * 
+         *
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $roles
+         * @static 
+         */ 
+        public static function role($roles = [])
+        {
+                        return \Illuminate\Routing\Route::role($roles);
+        }
+                    /**
+         * 
+         *
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $permissions
+         * @static 
+         */ 
+        public static function permission($permissions = [])
+        {
+                        return \Illuminate\Routing\Route::permission($permissions);
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Database\Query { 
             /**
      * 
@@ -19587,11 +19970,12 @@
          * @param mixed $callback
          * @param mixed $alias
          * @param bool $disableExtraConditions
+         * @param string|null $morphable
          * @static 
          */ 
-        public static function performJoinForEloquentPowerJoins($builder, $joinType = 'leftJoin', $callback = null, $alias = null, $disableExtraConditions = false)
+        public static function performJoinForEloquentPowerJoins($builder, $joinType = 'leftJoin', $callback = null, $alias = null, $disableExtraConditions = false, $morphable = null)
         {
-                        return \Illuminate\Database\Eloquent\Relations\Relation::performJoinForEloquentPowerJoins($builder, $joinType, $callback, $alias, $disableExtraConditions);
+                        return \Illuminate\Database\Eloquent\Relations\Relation::performJoinForEloquentPowerJoins($builder, $joinType, $callback, $alias, $disableExtraConditions, $morphable);
         }
                     /**
          * 
@@ -19656,6 +20040,22 @@
                     /**
          * 
          *
+         * @see \Kirschbaum\PowerJoins\Mixins\RelationshipsExtraMethods::performJoinForEloquentPowerJoinsForMorphTo()
+         * @param mixed $builder
+         * @param mixed $joinType
+         * @param mixed $callback
+         * @param mixed $alias
+         * @param bool $disableExtraConditions
+         * @param string|null $morphable
+         * @static 
+         */ 
+        public static function performJoinForEloquentPowerJoinsForMorphTo($builder, $joinType, $callback = null, $alias = null, $disableExtraConditions = false, $morphable = null)
+        {
+                        return \Illuminate\Database\Eloquent\Relations\Relation::performJoinForEloquentPowerJoinsForMorphTo($builder, $joinType, $callback, $alias, $disableExtraConditions, $morphable);
+        }
+                    /**
+         * 
+         *
          * @see \Kirschbaum\PowerJoins\Mixins\RelationshipsExtraMethods::performJoinForEloquentPowerJoinsForHasMany()
          * @param mixed $builder
          * @param mixed $joinType
@@ -19690,11 +20090,12 @@
          * @param mixed $builder
          * @param mixed $operator
          * @param mixed $count
+         * @param string|null $morphable
          * @static 
          */ 
-        public static function performHavingForEloquentPowerJoins($builder, $operator, $count)
+        public static function performHavingForEloquentPowerJoins($builder, $operator, $count, $morphable = null)
         {
-                        return \Illuminate\Database\Eloquent\Relations\Relation::performHavingForEloquentPowerJoins($builder, $operator, $count);
+                        return \Illuminate\Database\Eloquent\Relations\Relation::performHavingForEloquentPowerJoins($builder, $operator, $count, $morphable);
         }
                     /**
          * 
@@ -20368,6 +20769,18 @@
         public static function assertNotified($notification = null)
         {
                         return \Livewire\Features\SupportTesting\Testable::assertNotified($notification);
+        }
+                    /**
+         * 
+         *
+         * @see \Filament\Notifications\Testing\TestsNotifications::assertNotNotified()
+         * @param \Filament\Notifications\Notification|string|null $notification
+         * @return static 
+         * @static 
+         */ 
+        public static function assertNotNotified($notification = null)
+        {
+                        return \Livewire\Features\SupportTesting\Testable::assertNotNotified($notification);
         }
                     /**
          * 
@@ -21099,12 +21512,14 @@
          *
          * @see \Filament\Tables\Testing\TestsColumns::assertTableColumnExists()
          * @param string $name
+         * @param \Closure|null $checkColumnUsing
+         * @param mixed $record
          * @return static 
          * @static 
          */ 
-        public static function assertTableColumnExists($name)
+        public static function assertTableColumnExists($name, $checkColumnUsing = null, $record = null)
         {
-                        return \Livewire\Features\SupportTesting\Testable::assertTableColumnExists($name);
+                        return \Livewire\Features\SupportTesting\Testable::assertTableColumnExists($name, $checkColumnUsing, $record);
         }
                     /**
          * 
@@ -21466,28 +21881,6 @@
         public static function assertTableColumnSummarizerExists($columnName, $summarizerId)
         {
                         return \Livewire\Features\SupportTesting\Testable::assertTableColumnSummarizerExists($columnName, $summarizerId);
-        }
-         
-    }
-     
-}
-
-    namespace Illuminate\Routing { 
-            /**
-     * 
-     *
-     */ 
-        class Route {
-                    /**
-         * 
-         *
-         * @see \Livewire\Features\SupportLazyLoading\SupportLazyLoading::registerRouteMacro()
-         * @param mixed $enabled
-         * @static 
-         */ 
-        public static function lazy($enabled = true)
-        {
-                        return \Illuminate\Routing\Route::lazy($enabled);
         }
          
     }
@@ -22560,6 +22953,39 @@ namespace  {
             }
              
                 /**
+             * Chunk the results of a query by comparing IDs in descending order.
+             *
+             * @param int $count
+             * @param callable $callback
+             * @param string|null $column
+             * @param string|null $alias
+             * @return bool 
+             * @static 
+             */ 
+            public static function chunkByIdDesc($count, $callback, $column = null, $alias = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->chunkByIdDesc($count, $callback, $column, $alias);
+            }
+             
+                /**
+             * Chunk the results of a query by comparing IDs in a given order.
+             *
+             * @param int $count
+             * @param callable $callback
+             * @param string|null $column
+             * @param string|null $alias
+             * @param bool $descending
+             * @return bool 
+             * @static 
+             */ 
+            public static function orderedChunkById($count, $callback, $column = null, $alias = null, $descending = false)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orderedChunkById($count, $callback, $column, $alias, $descending);
+            }
+             
+                /**
              * Execute a callback over each item while chunking by ID.
              *
              * @param callable $callback
@@ -23298,11 +23724,12 @@ namespace  {
              * @param mixed $joinType
              * @param mixed $useAlias
              * @param bool $disableExtraConditions
+             * @param string|null $morphable
              * @static 
              */ 
-            public static function joinRelationship($relationName, $callback = null, $joinType = 'join', $useAlias = false, $disableExtraConditions = false)
+            public static function joinRelationship($relationName, $callback = null, $joinType = 'join', $useAlias = false, $disableExtraConditions = false, $morphable = null)
             {
-                                return \Illuminate\Database\Eloquent\Builder::joinRelationship($relationName, $callback, $joinType, $useAlias, $disableExtraConditions);
+                                return \Illuminate\Database\Eloquent\Builder::joinRelationship($relationName, $callback, $joinType, $useAlias, $disableExtraConditions, $morphable);
             }
              
                 /**
@@ -23605,13 +24032,14 @@ namespace  {
              * @param mixed $operator
              * @param mixed $count
              * @param mixed $boolean
-             * @param mixed $callback
+             * @param \Closure|array|null $callback
+             * @param string|null $morphable
              * @return static 
              * @static 
              */ 
-            public static function powerJoinHas($relation, $operator = '>=', $count = 1, $boolean = 'and', $callback = null)
+            public static function powerJoinHas($relation, $operator = '>=', $count = 1, $boolean = 'and', $callback = null, $morphable = null)
             {
-                                return \Illuminate\Database\Eloquent\Builder::powerJoinHas($relation, $operator, $count, $boolean, $callback);
+                                return \Illuminate\Database\Eloquent\Builder::powerJoinHas($relation, $operator, $count, $boolean, $callback, $morphable);
             }
              
                 /**
@@ -23622,7 +24050,7 @@ namespace  {
              * @param mixed $operator
              * @param mixed $count
              * @param mixed $boolean
-             * @param \Closure|null $callback
+             * @param \Closure|array|null $callback
              * @return static 
              * @static 
              */ 
@@ -25980,6 +26408,7 @@ namespace  {
             class Log extends \Illuminate\Support\Facades\Log {}
             class Mail extends \Illuminate\Support\Facades\Mail {}
             class Notification extends \Illuminate\Support\Facades\Notification {}
+            class Number extends \Illuminate\Support\Number {}
             class Password extends \Illuminate\Support\Facades\Password {}
             class Process extends \Illuminate\Support\Facades\Process {}
             class Queue extends \Illuminate\Support\Facades\Queue {}
@@ -25996,6 +26425,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class FilamentShield extends \BezhanSalleh\FilamentShield\Facades\FilamentShield {}
             class Livewire extends \Livewire\Livewire {}
             class LogViewer extends \Opcodes\LogViewer\Facades\LogViewer {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}

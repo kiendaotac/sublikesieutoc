@@ -68,8 +68,14 @@ class OrderForm extends Form
     public function store()
     {
         $this->validate();
+        $user = Auth::user();
         $userId = Auth::id();
         $product = Product::findOrFail($this->product_id);
+        $amount = $this->orderService->calculateAmount($this->target, $product);
+        if ($user->balance < $amount) {
+            $this->addError('error', 'Số tiền trong tài khoản của bạn không đủ để thanh toán đơn hàng.');
+            return ;
+        }
         $data   = [
             'service_id'      => $this->service->id,
             'product_id'      => $this->product_id,
@@ -79,7 +85,7 @@ class OrderForm extends Form
             'target'          => $this->target,
             'original'        => $this->original,
             'price'           => $product->price,
-            'amount'          => $this->orderService->calculateAmount($this->target, $product),
+            'amount'          => $amount,
             'extra_data'      => [],
             'note'            => $this->note,
             'status'          => OrderStatusEnum::STATUS_PENDING->value,

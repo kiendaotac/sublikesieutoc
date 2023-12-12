@@ -33,6 +33,7 @@ class ProductResource extends Resource
                     }),
                 Forms\Components\TextInput::make('price')->required()->label('Giá')->numeric(),
                 Forms\Components\Textarea::make('description')->label('Mô tả')->columnSpanFull()->rows(5),
+                Forms\Components\Textarea::make('note')->label('Ghi chú')->columnSpanFull()->rows(4),
             ]);
     }
 
@@ -44,6 +45,7 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('name')->label('Tên sản phẩm'),
                 Tables\Columns\TextColumn::make('price')->label('Giá')->money('VND'),
                 Tables\Columns\TextColumn::make('description')->label('Mô tả'),
+                Tables\Columns\TextColumn::make('note')->label('Ghi chú'),
             ])
             ->filters([
                 //

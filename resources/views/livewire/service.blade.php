@@ -120,6 +120,16 @@
                                             </div>
                                             <!--end:Item-->
                                         @endforeach
+                                        @if($selectedProduct->note ?? '')
+                                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-3 p-2 mt-9">
+                                                <i class="ki-outline ki-information fs-2tx text-warning me-4"></i>
+                                                <div class="d-flex flex-stack flex-grow-1">
+                                                    <div class="fw-semibold">
+                                                        <div class="fs-6 text-gray-700">{{ $selectedProduct->note ?? '' }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                         @error('orderForm.product')
                                             <div class="form-text text-danger">
                                             {{ $message }}
@@ -185,13 +195,18 @@
                                     @enderror
                                 </div>
                                 <div class="fw-bold fs-4">Tổng tiền = (số lượng) x (giá):
-                                    <span id="kt_ecommerce_edit_order_total_price">{{ \Illuminate\Support\Number::currency($productPrice * $orderForm->target ?? 0, 'VND', 'vi') }}</span>
+                                    <span id="kt_ecommerce_edit_order_total_price">{{ \Illuminate\Support\Number::currency((intval($productPrice) * intval($orderForm->target)) ?? 0, 'VND', 'vi') }}</span>
                                 </div>
                                 <div class="form-check form-check-custom form-check-solid">
                                     <input wire:model.debounce="orderForm.term" class="form-check-input cursor-pointer" id="term" type="checkbox" />
                                     <label class="form-check-label cursor-pointer"  for="term">Tôi đã kiểm tra kỹ thông tin trước khi đặt hàng</label>
                                 </div>
                                 @error('orderForm.term')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @error('orderForm.error')
                                 <div class="form-text text-danger">
                                     {{ $message }}
                                 </div>

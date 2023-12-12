@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('voucher_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Service::class);
-            $table->string('name');
-            $table->bigInteger('price');
-            $table->string('description')->nullable();
-            $table->string('note')->nullable();
+            $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\Voucher::class);
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('voucher_user');
     }
 };
