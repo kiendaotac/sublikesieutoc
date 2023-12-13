@@ -19,11 +19,13 @@ return new class extends Migration
             $table->string('target_identify');
             $table->integer('target');
             $table->integer('original');
+            $table->integer('done');
             $table->bigInteger('price');
             $table->bigInteger('amount');
             $table->json('extra_data')->nullable();
             $table->string('note')->nullable();
             $table->string('status');
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
         });
     }

@@ -21,6 +21,6 @@ class OrderRepository implements OrderInterface
 
     public function confirmPaid($orderId): bool
     {
-        return !!Order::whereId($orderId)->update(['status' => OrderStatusEnum::PAID->value]);
+        return !!Order::whereId($orderId)->update(['status' => OrderStatusEnum::STATUS_PENDING->value]);
     }
 }

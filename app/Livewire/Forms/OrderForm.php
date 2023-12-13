@@ -19,7 +19,6 @@ class OrderForm extends Form
 {
     #[Rule('required|active_url')]
     public string $targetIdentify;
-    #[Rule('required|int|min:1')]
     public int $target = 1, $original;
     #[Rule('nullable|string')]
     public ?string $note = null;
@@ -68,8 +67,22 @@ class OrderForm extends Form
     public function store()
     {
         $this->validate();
+        $user = Auth::user();
         $userId = Auth::id();
         $product = Product::findOrFail($this->product_id);
+        if (!is_null($product->min_target) && $this->target < $product->min_target) {
+            $this->addError('target', 'Số lượng tăng tối thiếu là: ' . $product->min_target);
+            return ;
+        }
+        if (!is_null($product->max_target) && $this->target > $product->max_target) {
+            $this->addError('target', 'Số lượng tăng tối đa là: ' . $product->max_target);
+            return ;
+        }
+        $amount = $this->orderService->calculateAmount($this->target, $product);
+        if ($user->balance < $amount) {
+            $this->addError('error', 'Số tiền trong tài khoản của bạn không đủ để thanh toán đơn hàng.');
+            return ;
+        }
         $data   = [
             'service_id'      => $this->service->id,
             'product_id'      => $this->product_id,
@@ -79,7 +92,7 @@ class OrderForm extends Form
             'target'          => $this->target,
             'original'        => $this->original,
             'price'           => $product->price,
-            'amount'          => $this->orderService->calculateAmount($this->target, $product),
+            'amount'          => $amount,
             'extra_data'      => [],
             'note'            => $this->note,
             'status'          => OrderStatusEnum::STATUS_PENDING->value,

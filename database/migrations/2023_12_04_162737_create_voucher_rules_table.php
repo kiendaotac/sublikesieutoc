@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('voucher_rules', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Service::class);
-            $table->foreignIdFor(\App\Models\Product::class);
             $table->string('name');
-            $table->bigInteger('price');
-            $table->unsignedInteger('min_target')->nullable();
-            $table->unsignedInteger('max_target')->nullable();
             $table->string('description')->nullable();
-            $table->string('note')->nullable();
+            $table->unsignedBigInteger('min_amount')->nullable();
+            $table->unsignedBigInteger('max_amount')->nullable();
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('voucher_rules');
     }
 };

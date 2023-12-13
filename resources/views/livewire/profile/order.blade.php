@@ -24,12 +24,16 @@
                     <th class="min-w-100px">Order ID</th>
                     <th class="min-w-100px">Dịch vụ</th>
                     <th class="min-w-125px">Số lượng</th>
+                    <th class="min-w-125px">SL ban đầu</th>
+                    <th class="min-w-125px">SL hoàn thành</th>
+                    <th class="min-w-125px">% Hoàn thành</th>
                     <th class="min-w-100px">Giá</th>
                     <th class="min-w-100px">Tổng tiền</th>
                     <th class="min-w-100px">Ghi chú</th>
                     <th class="min-w-50px">Ngày tạo</th>
+                    <th class="min-w-50px">Ngày hoàn thành</th>
                     <th class="min-w-50px">Trạng thái</th>
-                    <th class="text-end">Thao tác</th>
+{{--                    <th class="text-end">Thao tác</th>--}}
                 </tr>
                 </thead>
                 <!--end::Table head-->
@@ -49,7 +53,10 @@
                             <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $order->service->name ?? '' }}</a>
                             <span class="text-muted fw-semibold text-muted d-block fs-7">Sản phẩm: {{ $order->product->name ?? '' }}</span>
                         </td>
-                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format($order->target, locale: 'vi') }}</td>
+                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format(intval($order->target), locale: 'vi') }}</td>
+                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format(intval($order->original), locale: 'vi') }}</td>
+                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format(intval($order->done), locale: 'vi') }}</td>
+                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::percentage(intval($order->done)/intval($order->target) * 100, locale: 'vi') }}</td>
                         <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::currency($order->product->price ?? 0, in: 'VND', locale: 'vi') }}</td>
                         <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::currency(($order->product->price ?? 0) * $order->target, in: 'VND', locale: 'vi') }}</td>
                         <td>
@@ -60,7 +67,11 @@
                             <span class="text-muted fw-semibold text-muted d-block fs-7">{{ $order->created_at->diffForHumans() }}</span>
                         </td>
                         <td>
-                            <span class="badge {{ \App\Enums\OrderStatusEnum::from($order->status)->color() }}">{{ \App\Enums\OrderStatusEnum::from($order->status)->name() }}</span>
+                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $order->finished_at?->format('d/m/Y H:i:s') }}</a>
+                            <span class="text-muted fw-semibold text-muted d-block fs-7">{{ $order->finished_at?->diffForHumans() }}</span>
+                        </td>
+                        <td>
+                            <span class="badge {{ $order->status->color() }}">{{ $order->status->name() }}</span>
                         </td>
                         <td class="text-end">
                             {{--<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">

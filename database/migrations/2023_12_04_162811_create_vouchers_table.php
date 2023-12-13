@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Service::class);
-            $table->foreignIdFor(\App\Models\Product::class);
+            $table->foreignIdFor(\App\Models\VoucherRule::class);
             $table->string('name');
-            $table->bigInteger('price');
-            $table->unsignedInteger('min_target')->nullable();
-            $table->unsignedInteger('max_target')->nullable();
             $table->string('description')->nullable();
-            $table->string('note')->nullable();
+            $table->enum('discount_type', ['percent', 'amount']);
+            $table->float('discount');
+            $table->unsignedBigInteger('max_amount')->nullable();
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('vouchers');
     }
 };

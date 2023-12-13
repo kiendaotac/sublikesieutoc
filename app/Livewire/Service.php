@@ -10,8 +10,9 @@ use App\Models\Service as ServiceModel;
 class Service extends Component
 {
     public OrderForm $orderForm;
-    public ServiceModel $service;
-    public int $productPrice;
+    public $service;
+    public $productPrice;
+    public $selectedProduct;
 
 
     public function mount($slug)
@@ -35,6 +36,7 @@ class Service extends Component
 
     public function updatedOrderFormProductId($productId): void
     {
-        $this->productPrice = Product::findOrFail($productId)->price;
+        $this->selectedProduct = Product::findOrFail($productId);
+        $this->productPrice = $this->selectedProduct->price;
     }
 }

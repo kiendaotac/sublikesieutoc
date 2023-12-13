@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\Product::class)->nullable()->after('service_id');
+        Schema::create('voucher_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\Voucher::class);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeignIdFor(\App\Models\Product::class);
-        });
+        Schema::dropIfExists('voucher_user');
     }
 };

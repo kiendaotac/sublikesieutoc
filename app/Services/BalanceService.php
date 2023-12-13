@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Number;
 
 class BalanceService
 {
@@ -12,10 +13,13 @@ class BalanceService
 
     private UserService $userService;
 
-    public function __construct(BalanceHistoryService $balanceHistoryService, UserService $userService)
+    private VoucherService $voucherService;
+
+    public function __construct(BalanceHistoryService $balanceHistoryService, UserService $userService, VoucherService $voucherService)
     {
         $this->balanceHistoryService = $balanceHistoryService;
         $this->userService           = $userService;
+        $this->voucherService        = $voucherService;
     }
 
     /**
@@ -27,6 +31,13 @@ class BalanceService
         try {
             # get user
             $user = $this->userService->findById($userId);
+            # calculate discount
+            $discountAmount = $this->voucherService->calculateDiscountAmount($user, $amount);
+            if ($discountAmount) {
+                $amount += $discountAmount;
+                $discountAmountFormat = Number::currency($discountAmount, 'VND');
+                $reason .= "\n-Được khuyến mại: ${discountAmountFormat}";
+            }
             # add log history
             $this->balanceHistoryService->addDepositLog($user, $amount, $reason);
             # deposit
