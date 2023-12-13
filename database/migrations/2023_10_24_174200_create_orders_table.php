@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('service_type');
             $table->string('target_identify');
             $table->integer('target');
-            $table->integer('original');
+            $table->integer('original')->nullable();
             $table->integer('done');
             $table->float('price');
             $table->bigInteger('amount');

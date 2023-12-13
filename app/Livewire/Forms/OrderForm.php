@@ -19,7 +19,7 @@ class OrderForm extends Form
 {
     #[Rule('required|active_url')]
     public $targetIdentify;
-    public $target = 1, $original;
+    public $target = 1;
     #[Rule('nullable|string')]
     public ?string $note = null;
     public Service $service;
@@ -43,7 +43,6 @@ class OrderForm extends Form
     {
         return [
             'targetIdentify' => 'link bài viết',
-            'original'       => 'số lượng ban đầu',
             'target'         => 'số lượng tăng thêm',
             'note'           => 'ghi chú',
             'term'           => 'điều khoản',
@@ -91,7 +90,7 @@ class OrderForm extends Form
             'service_type'    => $this->service->type,
             'target_identify' => $this->targetIdentify,
             'target'          => $this->target,
-            'original'        => $this->original,
+            'original'        => 0,
             'price'           => $product->price,
             'amount'          => $amount,
             'extra_data'      => [],

@@ -162,15 +162,6 @@
                                 <!--begin::Input group-->
                                 <div class="d-flex flex-column flex-md-row gap-5">
                                     <div class="fv-row flex-row-fluid fv-plugins-icon-container">
-                                        <label for="original" class="required form-label">Số lượng ban đầu</label>
-                                        <input id="original" wire:model.debounce="orderForm.original" class="form-control" placeholder="Số lượng ban đầu" type="number" />
-                                        @error('orderForm.original')
-                                        <div class="form-text text-danger">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                    <div class="fv-row flex-row-fluid fv-plugins-icon-container">
                                         <label for="target" class="required form-label">Số lượng tăng thêm</label>
                                         <input min="{{ intval($selectedProduct->min_target ?? 0) }}" id="target" wire:model.blur="orderForm.target" class="form-control" placeholder="Số lượng tăng thêm" type="number" />
                                         @error('orderForm.target')
