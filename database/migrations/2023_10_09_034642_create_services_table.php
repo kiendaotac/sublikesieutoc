@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('type');
             $table->string('icon');
-            $table->bigInteger('price');
+//            $table->bigInteger('price');
             $table->json('extra_data')->nullable();
             $table->text('description')->nullable();
             $table->string('status');

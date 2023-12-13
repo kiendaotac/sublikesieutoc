@@ -57,8 +57,8 @@
                         <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format(intval($order->original), locale: 'vi') }}</td>
                         <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format(intval($order->done), locale: 'vi') }}</td>
                         <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::percentage(intval($order->done)/intval($order->target) * 100, locale: 'vi') }}</td>
-                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::currency($order->product->price ?? 0, in: 'VND', locale: 'vi') }}</td>
-                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::currency(($order->product->price ?? 0) * $order->target, in: 'VND', locale: 'vi') }}</td>
+                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format(floatval($order->product->price ?? 0)) }} đ</td>
+                        <td class="text-dark fw-bold text-hover-primary fs-6">{{ \Illuminate\Support\Number::format(floatval($order->product->price ?? 0) * intval($order->target)) }} đ</td>
                         <td>
                             <span class="text-muted fw-semibold text-muted d-block fs-7">{{ $order->note }}</span>
                         </td>
