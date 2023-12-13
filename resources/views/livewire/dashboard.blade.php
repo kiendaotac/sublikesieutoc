@@ -193,118 +193,55 @@
                             </h3>
                             <!--end::Title-->
                         </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
                         <div class="card-body pt-2">
-                            <!--begin::Table-->
                             <table class="table align-middle table-row-dashed fs-6 gy-3" id="kt_table_widget_4_table">
-                                <!--begin::Table head-->
                                 <thead>
-                                <!--begin::Table row-->
-                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                    <th class="min-w-100px">Order ID</th>
-                                    <th class="min-w-100px">Dịch vụ</th>
-                                    <th class="min-w-125px">Số lượng</th>
-                                    <th class="min-w-100px">Giá</th>
-                                    <th class="min-w-100px">Tổng tiền</th>
-                                    <th class="min-w-100px">Ghi chú</th>
-                                    <th class="min-w-50px">Ngày tạo</th>
-                                    <th class="min-w-50px">Trạng thái</th>
-                                    <th class="text-end"></th>
+                                <tr class="fw-bold text-muted">
+                                    <th>Order ID</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Link bài</th>
+                                    <th>Số lượng</th>
+                                    <th>SL ban đầu</th>
+                                    <th>SL hoàn thành</th>
+                                    <th>% Hoàn thành</th>
+                                    <th>Giá</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Ngày hoàn thành</th>
+                                    <th>Trạng thái</th>
                                 </tr>
-                                <!--end::Table row-->
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody class="fw-bold text-gray-600">
                                 @foreach($user->orders ?? [] as $order)
                                     <tr>
-                                        <td><span class="text-gray-800 fw-bolder">#{{ $order->id }}</span></td>
-                                        <td><a href="{{ route('service', $order->service->slug) }}" class="text-gray-600 text-hover-primary">{{ $order->service->name ?? '' }}</a></td>
-                                        <td>{{ number_format($order->target ?? 0) }}</td>
-                                        <td><span class="text-gray-800 fw-bolder">{{ \Illuminate\Support\Number::format($order->price ?? 0) }} đ</span></td>
-                                        <td><span class="text-gray-800 fw-bolder">{{ Number::format($order->amount ?? 0) }} đ</span></td>
-                                        <td><span>{{ $order->note }}</span></td>
-                                        <td><span>{{ $order->created_at->format('d/m/Y H:i:s') }}</span></td>
                                         <td>
-                                            <span class="badge py-3 px-4 fs-7 badge-light-warning">{{ $order->status }}</span>
+                                            <span class="text-dark fw-bold text-hover-primary fs-6">{{ $order->id }}</span>
                                         </td>
                                         <td>
-                                            <!--begin::Action-->
-                                            <div class="m-0">
-                                                <!--begin::Menu-->
-                                                <button class="btn btn-icon btn-sm h-25px w-25px btn-color-gray-400 btn-active-color-primary justify-content-end" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true">
-                                                    <i class="ki-outline ki-dots-square fs-1"></i>
-                                                </button>
-                                                <!--begin::Menu 2-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <div class="menu-content fs-6 text-dark fw-bold px-3 py-4">Quick Actions</div>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu separator-->
-                                                    <div class="separator mb-3 opacity-75"></div>
-                                                    <!--end::Menu separator-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3">New Ticket</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3">New Customer</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start">
-                                                        <!--begin::Menu item-->
-                                                        <a href="#" class="menu-link px-3">
-                                                            <span class="menu-title">New Group</span>
-                                                            <span class="menu-arrow"></span>
-                                                        </a>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu sub-->
-                                                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                            <!--begin::Menu item-->
-                                                            <div class="menu-item px-3">
-                                                                <a href="#" class="menu-link px-3">Admin Group</a>
-                                                            </div>
-                                                            <!--end::Menu item-->
-                                                            <!--begin::Menu item-->
-                                                            <div class="menu-item px-3">
-                                                                <a href="#" class="menu-link px-3">Staff Group</a>
-                                                            </div>
-                                                            <!--end::Menu item-->
-                                                            <!--begin::Menu item-->
-                                                            <div class="menu-item px-3">
-                                                                <a href="#" class="menu-link px-3">Member Group</a>
-                                                            </div>
-                                                            <!--end::Menu item-->
-                                                        </div>
-                                                        <!--end::Menu sub-->
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3">New Contact</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu separator-->
-                                                    <div class="separator mt-3 opacity-75"></div>
-                                                    <!--end::Menu separator-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <div class="menu-content px-3 py-3">
-                                                            <a class="btn btn-primary btn-sm px-4" href="#">Generate Reports</a>
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu 2-->
-                                                <!--end::Menu-->
-                                            </div>
-                                            <!--end::Action-->
+                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $order->service->name ?? '' }}</a>
+                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Sản phẩm: {{ $order->product->name ?? '' }}</span>
+                                        </td>
+                                        <td>
+                                            <a href="{{ $order->target_identify }}" class="text-primary fw-bold text-hover-primary d-block mb-1 fs-6">Link bài</a>
+                                        </td>
+                                        <td>{{ \Illuminate\Support\Number::format(intval($order->target), locale: 'vi') }}</td>
+                                        <td>{{ \Illuminate\Support\Number::format(intval($order->original), locale: 'vi') }}</td>
+                                        <td>{{ \Illuminate\Support\Number::format(intval($order->done), locale: 'vi') }}</td>
+                                        <td>{{ \Illuminate\Support\Number::percentage(intval($order->done)/intval($order->target) * 100, locale: 'vi') }}</td>
+                                        <td>{{ \Illuminate\Support\Number::format(floatval($order->product->price ?? 0)) }} đ</td>
+                                        <td>{{ \Illuminate\Support\Number::format(floatval($order->product->price ?? 0) * intval($order->target)) }} đ</td>
+                                        <td>
+                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $order->created_at->format('d/m/Y H:i:s') }}</a>
+                                            <span class="text-muted fw-semibold text-muted d-block fs-7">{{ $order->created_at->diffForHumans() }}</span>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $order->finished_at?->format('d/m/Y H:i:s') }}</a>
+                                            <span class="text-muted fw-semibold text-muted d-block fs-7">{{ $order->finished_at?->diffForHumans() }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge {{ $order->status->color() }}">{{ $order->status->name() }}</span>
                                         </td>
                                     </tr>
                                 @endforeach
