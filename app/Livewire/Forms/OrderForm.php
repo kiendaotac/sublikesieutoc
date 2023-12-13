@@ -18,8 +18,8 @@ use Spatie\Activitylog\ActivityLogStatus;
 class OrderForm extends Form
 {
     #[Rule('required|active_url')]
-    public string $targetIdentify;
-    public int $target = 1, $original;
+    public $targetIdentify;
+    public $target = 1, $original;
     #[Rule('nullable|string')]
     public ?string $note = null;
     public Service $service;
