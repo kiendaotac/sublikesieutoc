@@ -31,7 +31,7 @@ class ProductResource extends Resource
                     ->options(function () {
                         return Service::whereStatus('active')->whereNotNull('parent_id')->pluck('name', 'id');
                     }),
-                Forms\Components\TextInput::make('price')->required()->label('Giá')->numeric(),
+                Forms\Components\TextInput::make('price')->required()->label('Giá')->numeric()->inputMode('decimal'),
                 Forms\Components\TextInput::make('min_target')->nullable()->label('Số luượng tối thiểu')->numeric(),
                 Forms\Components\Textarea::make('description')->label('Mô tả')->columnSpanFull()->rows(5),
                 Forms\Components\Textarea::make('note')->label('Ghi chú')->columnSpanFull()->rows(4),
@@ -44,7 +44,7 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('service.name')->label('Tên dịch vụ'),
                 Tables\Columns\TextColumn::make('name')->label('Tên sản phẩm'),
-                Tables\Columns\TextColumn::make('price')->label('Giá')->money('VND'),
+                Tables\Columns\TextColumn::make('price')->label('Giá')->numeric(),
                 Tables\Columns\TextColumn::make('min_target')->label('SL tối thiệu')->numeric(),
                 Tables\Columns\TextColumn::make('description')->label('Mô tả'),
                 Tables\Columns\TextColumn::make('note')->label('Ghi chú'),

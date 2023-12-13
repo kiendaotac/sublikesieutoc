@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Service::class);
-            $table->foreignIdFor(\App\Models\Product::class);
             $table->string('name');
-            $table->bigInteger('price');
+            $table->float('price');
             $table->unsignedInteger('min_target')->nullable();
             $table->unsignedInteger('max_target')->nullable();
             $table->string('description')->nullable();

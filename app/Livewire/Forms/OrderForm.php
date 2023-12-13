@@ -46,7 +46,8 @@ class OrderForm extends Form
             'original'       => 'số lượng ban đầu',
             'target'         => 'số lượng tăng thêm',
             'note'           => 'ghi chú',
-            'term'           => 'điều khoản'
+            'term'           => 'điều khoản',
+            'product_id'     => 'sản phẩm'
         ];
     }
 

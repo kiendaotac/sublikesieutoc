@@ -222,8 +222,8 @@
                                         <td><span class="text-gray-800 fw-bolder">#{{ $order->id }}</span></td>
                                         <td><a href="{{ route('service', $order->service->slug) }}" class="text-gray-600 text-hover-primary">{{ $order->service->name ?? '' }}</a></td>
                                         <td>{{ number_format($order->target ?? 0) }}</td>
-                                        <td><span class="text-gray-800 fw-bolder">{{ number_format($order->price ?? 0, 0, ',', '.') }} đ</span></td>
-                                        <td><span class="text-gray-800 fw-bolder">{{ number_format($order->amount ?? 0, 0, ',', '.') }} đ</span></td>
+                                        <td><span class="text-gray-800 fw-bolder">{{ \Illuminate\Support\Number::format($order->price ?? 0) }} đ</span></td>
+                                        <td><span class="text-gray-800 fw-bolder">{{ Number::format($order->amount ?? 0) }} đ</span></td>
                                         <td><span>{{ $order->note }}</span></td>
                                         <td><span>{{ $order->created_at->format('d/m/Y H:i:s') }}</span></td>
                                         <td>

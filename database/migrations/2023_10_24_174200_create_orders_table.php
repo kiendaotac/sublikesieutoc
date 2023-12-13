@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('service_id');
+            $table->foreignIdFor(\App\Models\Product::class);
             $table->bigInteger('user_id');
             $table->string('service_type');
             $table->string('target_identify');
             $table->integer('target');
             $table->integer('original');
             $table->integer('done');
-            $table->bigInteger('price');
+            $table->float('price');
             $table->bigInteger('amount');
             $table->json('extra_data')->nullable();
             $table->string('note')->nullable();

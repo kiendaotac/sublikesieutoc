@@ -113,9 +113,9 @@
                                                 </div>
                                                 <!--end::Checkbox-->
                                                 <!--begin::Description-->
-                                                <label for="product_{{ $product->id }}" class="mx-2 text-gray-800 text-hover-primary fw-bold fs-8 cursor-pointer">{{ $product->name }}</label>
-                                                <span class="mx-2 text-muted fw-semibold d-block fs-8">{{ $product->description }}</span>
-                                                <span class="mx-2 badge badge-light-success fs-8 fw-bold">{{ \Illuminate\Support\Number::currency($product->price, 'VND', 'vi') }}</span>
+                                                <label for="product_{{ $product->id }}" class="mx-2 text-gray-800 text-hover-primary fw-bold fs-7 cursor-pointer">{{ $product->name }}</label>
+                                                <span class="mx-2 text-muted fw-semibold d-block fs-7">{{ $product->description }}</span>
+                                                <span class="mx-2 badge badge-light-success fs-7 fw-bold">{{ \Illuminate\Support\Number::format($product->price) }} đ</span>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end:Item-->
@@ -130,7 +130,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        @error('orderForm.product')
+                                        @error('orderForm.product_id')
                                             <div class="form-text text-danger">
                                             {{ $message }}
                                             </div>
@@ -195,7 +195,7 @@
                                     @enderror
                                 </div>
                                 <div class="fw-bold fs-4">Tổng tiền = (số lượng) x (giá):
-                                    <span id="kt_ecommerce_edit_order_total_price">{{ \Illuminate\Support\Number::currency((intval($productPrice) * intval($orderForm->target)) ?? 0, 'VND', 'vi') }}</span>
+                                    <span id="kt_ecommerce_edit_order_total_price">{{ \Illuminate\Support\Number::format((floatval($productPrice) * intval($orderForm->target)) ?? 0) }} đ</span>
                                 </div>
                                 <div class="form-check form-check-custom form-check-solid">
                                     <input wire:model.debounce="orderForm.term" class="form-check-input cursor-pointer" id="term" type="checkbox" />
@@ -204,7 +204,6 @@
                                 @error('orderForm.term')
                                 <div class="form-text text-danger">
                                     {{ $message }}
-                                </div>
                                 @enderror
                                 @error('orderForm.error')
                                 <div class="form-text text-danger">
